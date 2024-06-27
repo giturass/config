@@ -38,6 +38,8 @@ DOMAIN-SUFFIX,servicewechat.com
 DOMAIN-SUFFIX,aliyundrive.com
 DOMAIN-SUFFIX,alicloudccp.com
 DOMAIN-SUFFIX,cherrytv.one
+DOMAIN-SUFFIX,serv00.com
+DOMAIN-SUFFIX,linux.do
 DOMAIN-SUFFIX,local
 IP-CIDR,192.168.0.0/16,no-resolve
 IP-CIDR,10.0.0.0/8,no-resolve
