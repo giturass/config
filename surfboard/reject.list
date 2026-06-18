@@ -16,11 +16,11 @@ DOMAIN-KEYWORD,adserver
 DOMAIN-KEYWORD,admaster
 DOMAIN-KEYWORD,taboola
 DOMAIN-KEYWORD,crashlytics
+DOMAIN-KEYWORD,firebase
 DOMAIN-KEYWORD,adsmind
 DOMAIN-SUFFIX,vivo.com.cn
 DOMAIN-SUFFIX,avlyun.com
 DOMAIN-SUFFIX,25mao.com
-IP-CIDR,95.161.76.100/31,no-resolve
 IP-CIDR,139.196.107.167/32,no-resolve
 IP-CIDR,47.103.64.252/32,no-resolve
 IP-CIDR,123.56.236.208/32,no-resolve
