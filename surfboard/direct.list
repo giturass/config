@@ -1,4 +1,3 @@
-DOMAIN,app-measurement.com
 DOMAIN,ide.goorm.io
 DOMAIN-KEYWORD,meituan
 DOMAIN-KEYWORD,sina
@@ -14,6 +13,7 @@ DOMAIN-KEYWORD,jianshu
 DOMAIN-KEYWORD,bilibili
 DOMAIN-KEYWORD,biliapi
 DOMAIN-KEYWORD,bilivideo
+DOMAIN-KEYWORD,alwaysdata
 DOMAIN-SUFFIX,douyinpic.com
 DOMAIN-SUFFIX,amemv.com
 DOMAIN-SUFFIX,douyinstatic.com
@@ -59,12 +59,13 @@ DOMAIN-SUFFIX,aliyundrive.com
 DOMAIN-SUFFIX,alicloudccp.com
 DOMAIN-SUFFIX,cherrytv.one
 DOMAIN-SUFFIX,serv00.com
-DOMAIN-SUFFIX,linux.do
 DOMAIN-SUFFIX,tuta.com
 DOMAIN-SUFFIX,xiaomiwear.com
 DOMAIN-SUFFIX,xiaomi.com
 DOMAIN-SUFFIX,miui.com
 DOMAIN-SUFFIX,local
+DOMAIN-SUFFIX,muyuan.do
+DOMAIN-SUFFIX,hidencloud.com
 IP-CIDR,192.168.0.0/16,no-resolve
 IP-CIDR,10.0.0.0/8,no-resolve
 IP-CIDR,172.16.0.0/12,no-resolve
