@@ -1,4 +1,6 @@
-DOMAIN,community.oneplus.com
+DOMAIN-SUFFIX,oneplus.com
+DOMAIN-SUFFIX,oneplusmobile.com
+DOMAIN-SUFFIX,plyr.io
 DOMAIN-SUFFIX,astro.build
 DOMAIN-SUFFIX,ldstatic.com
 DOMAIN-SUFFIX,shields.io
@@ -59,11 +61,6 @@ DOMAIN-SUFFIX,dmc.nico
 DOMAIN-SUFFIX,nicovideo.jp
 DOMAIN-SUFFIX,cdninstagram.com
 DOMAIN-SUFFIX,sentry.io
-DOMAIN-SUFFIX,4everland.xyz
-DOMAIN-SUFFIX,walletconnect.org
-DOMAIN-SUFFIX,walletlink.org
-DOMAIN-SUFFIX,crossbell.io
-DOMAIN-SUFFIX,xlog.app
 DOMAIN-SUFFIX,bing.com
 DOMAIN-SUFFIX,live.com
 DOMAIN-SUFFIX,msftauth.net
