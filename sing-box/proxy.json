@@ -2,10 +2,10 @@
   "version": 3,
   "rules": [
     {
-      "domain": [
-        "community.oneplus.com"
-      ],
       "domain_suffix": [
+        "oneplus.com",
+        "oneplusmobile.com",
+        "plyr.io",
         "astro.build",
         "ldstatic.com",
         "shields.io",
@@ -66,11 +66,6 @@
         "nicovideo.jp",
         "cdninstagram.com",
         "sentry.io",
-        "4everland.xyz",
-        "walletconnect.org",
-        "walletlink.org",
-        "crossbell.io",
-        "xlog.app",
         "bing.com",
         "live.com",
         "msftauth.net",
