@@ -1,0 +1,110 @@
+name: Sync rules
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/sync-rules.yml"
+      - "scripts/sync_rules.py"
+      - "rules/*.list"
+      - "rules/**/*.list"
+      - "surge/*.list"
+      - "surge/**/*.list"
+      - "surfboard/*.list"
+      - "surfboard/**/*.list"
+      - "sing-box/**/*.json"
+  pull_request:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/sync-rules.yml"
+      - "scripts/sync_rules.py"
+      - "rules/*.list"
+      - "rules/**/*.list"
+      - "surge/*.list"
+      - "surge/**/*.list"
+      - "surfboard/*.list"
+      - "surfboard/**/*.list"
+      - "sing-box/**/*.json"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Collect changed files
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$HOME/tmp"
+          : > "$HOME/tmp/changed-files.txt"
+
+          if [[ "${{ github.event_name }}" == "pull_request" ]]; then
+            git fetch origin "${{ github.base_ref }}" --depth=1
+            git diff --name-only "origin/${{ github.base_ref }}...HEAD" > "$HOME/tmp/changed-files.txt"
+          elif [[ "${{ github.event_name }}" == "push" && "${{ github.event.before }}" != "0000000000000000000000000000000000000000" ]]; then
+            git diff --name-only "${{ github.event.before }}" "${{ github.sha }}" > "$HOME/tmp/changed-files.txt"
+          elif git rev-parse HEAD^ >/dev/null 2>&1; then
+            git diff --name-only HEAD^ HEAD > "$HOME/tmp/changed-files.txt"
+          fi
+
+          cat "$HOME/tmp/changed-files.txt"
+
+      - name: Sync rule sources
+        run: python3 scripts/sync_rules.py --changed-files "$HOME/tmp/changed-files.txt"
+
+      - name: Install sing-box
+        shell: bash
+        run: |
+          set -euo pipefail
+          latest_tag="$(curl -fsSL https://api.github.com/repos/SagerNet/sing-box/releases/latest | jq -r .tag_name)"
+          archive="sing-box-${latest_tag#v}-linux-amd64.tar.gz"
+          curl -fL -o "$HOME/tmp/$archive" "https://github.com/SagerNet/sing-box/releases/download/${latest_tag}/${archive}"
+          tar -xzf "$HOME/tmp/$archive" -C "$HOME/tmp"
+          sudo install -m 0755 "$HOME/tmp/sing-box-${latest_tag#v}-linux-amd64/sing-box" /usr/local/bin/sing-box
+          sing-box version
+
+      - name: Compile sing-box rule sets
+        shell: bash
+        run: |
+          set -euo pipefail
+          find sing-box -maxdepth 1 -type f -name "*.json" ! -name "config.json" -print0 |
+            while IFS= read -r -d '' json_file; do
+              sing-box rule-set compile --output "${json_file%.json}.srs" "$json_file"
+            done
+
+      - name: Commit synchronized files
+        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add rules surge surfboard sing-box
+          if git diff --cached --quiet; then
+            echo "No synchronized changes to commit"
+          else
+            git commit -m "Sync generated rule files [skip ci]"
+            git push
+          fi
+
+      - name: Verify synchronized files
+        if: github.event_name == 'pull_request'
+        shell: bash
+        run: |
+          set -euo pipefail
+          if ! git diff --quiet; then
+            git diff --stat
+            echo "::error::Rule outputs are not synchronized. Run scripts/sync_rules.py and commit the result."
+            exit 1
+          fi
