@@ -2,6 +2,9 @@
   "version": 3,
   "rules": [
     {
+      "domain": [
+        "community.oneplus.com"
+      ],
       "domain_suffix": [
         "astro.build",
         "ldstatic.com",
