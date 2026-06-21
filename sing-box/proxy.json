@@ -93,6 +93,7 @@
         "eu.org",
         "f-droid.org",
         "linux.do",
+        "workos.com",
         "getsurfboard.com",
         "xhamster.com",
         "xhcdn.com",
@@ -154,6 +155,9 @@
         "2001:b28:f23c::/47",
         "2001:b28:f23f::/48",
         "2a0a:f280:203::/48"
+      ],
+      "process_name": [
+        "com.heytap.htms"
       ]
     }
   ]

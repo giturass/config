@@ -19,19 +19,22 @@ from typing import Iterable
 
 ROOT = Path(__file__).resolve().parents[1]
 
-JSON_RULE_KEYS = ("domain", "domain_suffix", "domain_keyword", "ip_cidr")
+JSON_RULE_KEYS = ("domain", "domain_suffix", "domain_keyword", "ip_cidr", "process_name")
+CASE_SENSITIVE_KINDS = {"process_name", "user_agent"}
 LIST_RULE_TO_KIND = {
     "DOMAIN": "domain",
     "DOMAIN-SUFFIX": "domain_suffix",
     "DOMAIN-KEYWORD": "domain_keyword",
     "IP-CIDR": "ip_cidr",
     "IP-CIDR6": "ip_cidr",
+    "PROCESS-NAME": "process_name",
     "USER-AGENT": "user_agent",
 }
 KIND_TO_LIST_RULE = {
     "domain": "DOMAIN",
     "domain_suffix": "DOMAIN-SUFFIX",
     "domain_keyword": "DOMAIN-KEYWORD",
+    "process_name": "PROCESS-NAME",
     "user_agent": "USER-AGENT",
 }
 
@@ -54,7 +57,7 @@ class RuleSet:
         normalized = normalize_value(kind, value)
         if not normalized:
             return
-        key = (kind, normalized.lower() if kind != "user_agent" else normalized)
+        key = (kind, normalized if kind in CASE_SENSITIVE_KINDS else normalized.lower())
         if key in self._seen:
             return
         self._seen.add(key)

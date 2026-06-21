@@ -88,6 +88,7 @@ DOMAIN-SUFFIX,termux.dev
 DOMAIN-SUFFIX,eu.org
 DOMAIN-SUFFIX,f-droid.org
 DOMAIN-SUFFIX,linux.do
+DOMAIN-SUFFIX,workos.com
 DOMAIN-SUFFIX,getsurfboard.com
 DOMAIN-SUFFIX,xhamster.com
 DOMAIN-SUFFIX,xhcdn.com
@@ -126,6 +127,7 @@ DOMAIN-KEYWORD,koyeb
 DOMAIN-KEYWORD,vercel
 DOMAIN-KEYWORD,cloudfront
 DOMAIN-KEYWORD,openai
+PROCESS-NAME,com.heytap.htms
 IP-CIDR,91.108.56.0/22,no-resolve
 IP-CIDR,91.108.4.0/22,no-resolve
 IP-CIDR,91.108.8.0/22,no-resolve
