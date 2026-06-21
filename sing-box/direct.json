@@ -2,9 +2,6 @@
   "version": 3,
   "rules": [
     {
-      "domain": [
-        "ide.goorm.io"
-      ],
       "domain_suffix": [
         "douyinpic.com",
         "amemv.com",
