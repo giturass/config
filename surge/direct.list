@@ -63,7 +63,6 @@ DOMAIN-SUFFIX,xiaomiwear.com
 DOMAIN-SUFFIX,xiaomi.com
 DOMAIN-SUFFIX,miui.com
 DOMAIN-SUFFIX,local
-DOMAIN-SUFFIX,muyuan.do
 DOMAIN-SUFFIX,hidencloud.com
 IP-CIDR,192.168.0.0/16,no-resolve
 IP-CIDR,10.0.0.0/8,no-resolve
